@@ -1,0 +1,5 @@
+__include__:
+  - '../_baseline132_common.yml'
+  - '../../datasets/seadronessee_odv2.yml'
+
+output_dir: ./outputs/seadronessee_odv2/baseline_deim_s

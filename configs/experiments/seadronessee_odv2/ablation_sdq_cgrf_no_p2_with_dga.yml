@@ -1,0 +1,5 @@
+__include__:
+  - './ablation_sdq_cgrf_no_p2_no_dga.yml'
+  - '../_dga_regularizer.yml'
+
+output_dir: ./outputs/seadronessee_odv2/ablation_sdq_cgrf_no_p2_with_dga

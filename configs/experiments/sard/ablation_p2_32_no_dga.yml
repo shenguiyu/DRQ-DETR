@@ -1,0 +1,15 @@
+# Thin-P2-32 ablation without DGA.
+__include__:
+  - '../_fair132_common.yml'
+  - '../../datasets/sard.yml'
+
+output_dir: ./outputs/sard/ablation_p2_32_no_dga
+
+DRQ_DETR:
+  yaml_path: configs/models/drq_detr_thinp2_32.yml
+
+DEIMCriterion:
+  weight_dict: {loss_mal: 1, loss_bbox: 5, loss_giou: 2, loss_fgl: 0.15, loss_ddf: 1.5}
+  losses: ['mal', 'boxes', 'local']
+  gamma: 1.5
+

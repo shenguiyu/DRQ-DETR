@@ -1,0 +1,25 @@
+# Optional training-only Detail Gate Alignment (DGA) regularizer.
+#
+# DGA does not add inference-time parameters or FLOPs. It is retained only for
+# controlled ablations because its effect is dataset dependent. The released
+# final DRQ-DETR configuration does not enable this file.
+
+DEIMCriterion:
+  weight_dict:
+    loss_mal: 1
+    loss_bbox: 5
+    loss_giou: 2
+    loss_fgl: 0.15
+    loss_ddf: 1.5
+    loss_dga: 0.02
+  losses: ['mal', 'boxes', 'local', 'dga']
+  gamma: 1.5
+  dga_small_area: 1024
+  dga_small_area_ratio: 0.0
+  dga_box_expand: 0.15
+  dga_inner_shrink: 0.15
+  dga_target_mode: ring
+  dga_dice_weight: 0.05
+  dga_smooth_kernel: 3
+  dga_warmup_epoch: 4
+

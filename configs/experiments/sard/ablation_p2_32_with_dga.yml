@@ -1,0 +1,7 @@
+# Thin-P2-32 ablation with the optional DGA regularizer.
+__include__:
+  - './ablation_p2_32_no_dga.yml'
+  - '../_dga_regularizer.yml'
+
+output_dir: ./outputs/sard/ablation_p2_32_with_dga
+

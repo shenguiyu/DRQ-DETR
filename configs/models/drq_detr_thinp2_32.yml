@@ -1,0 +1,52 @@
+# SDQ 1024/64 + Thin-P2-32 for UAV small-object detection.
+# Input 0 to the decoder is the DSPR feature for sparse detail queries only.
+# Thin-P2-32 enters the decoder as a lightweight stride-4 value level.
+backbone:
+  # [from, module, args]
+  - [-1, StemBlock, [16, 16, True]] # 0-P2/4
+  - [-1, HG_Stage, [16, 64, 1, 3, False, False, 3, True, 'se']] # 1-P2/4
+  - [-1, HG_Stage, [32, 256, 1, 3, True, False, 3, True, 'se']] # 2-P3/8
+  - [-1, HG_Stage, [64, 512, 2, 3, True, True, 5, True, 'se']] # 3-P4/16
+  - [-1, HG_Stage, [128, 1024, 1, 3, True, True, 5, True, 'se']] # 4-P5/32
+
+encoder:
+  - [1, ConvNormLayer_fuse, [32, 1, 1]] # 5-thin P2/4
+  - [[1, 2], DSPR, [128, 0.20, 0.50, True]] # 6-SDQ detail proxy, stride 4
+  - [2, ConvNormLayer_fuse, [256, 1, 1]] # 7-P3/8
+  - [3, ConvNormLayer_fuse, [256, 1, 1]] # 8-P4/16
+  - [4, ConvNormLayer_fuse, [256, 1, 1]] # 9-P5/32
+
+  - [[7, 6], CGRF, [256, 0.50, False]] # 10-P3/8
+  - [[8, 6], CGRF, [256, 0.50, False]] # 11-P4/16
+  - [9, TransformerEncoderBlock, [8, 1024, 0.1, "relu", 10000, False]] # 12-P5/32
+
+  - [-1, ConvNormLayer_fuse, [256, 1, 1]] # 13-P5 lateral
+  - [-1, nn.Upsample, [None, 2, "nearest"]] # 14
+  - [[-1, 11], Concat, []] # 15-P4/16
+  - [-1, RepNCSPELAN4, [256, 512, 64, 1, False, 'silu']] # 16-P4/16
+
+  - [-1, ConvNormLayer_fuse, [256, 1, 1]] # 17-P4 lateral
+  - [-1, nn.Upsample, [None, 2, "nearest"]] # 18
+  - [[-1, 10], Concat, []] # 19-P3/8
+  - [-1, RepNCSPELAN4, [256, 512, 64, 1, False, 'silu']] # 20-P3/8
+
+  - [-1, ConvNormLayer_fuse, [256, 1, 1]] # 21-P3 lateral
+  - [-1, ConvNormLayer_fuse, [32, 1, 1]] # 22-P3 thin branch
+  - [-1, nn.Upsample, [None, 2, "nearest"]] # 23
+  - [[-1, 5], Concat, []] # 24-P2/4, 32+32 channels
+  - [-1, RepNCSPELAN4, [32, 64, 16, 1, False, 'silu']] # 25-thin P2/4
+
+  - [-1, SCDown, [256, 3, 2, 'silu']] # 26-P3/8
+  - [[-1, 21], Concat, []] # 27-P3/8
+  - [-1, RepNCSPELAN4, [256, 512, 64, 1, False, 'silu']] # 28-P3/8
+
+  - [-1, SCDown, [256, 3, 2, 'silu']] # 29-P4/16
+  - [[-1, 17], Concat, []] # 30-P4/16
+  - [-1, RepNCSPELAN4, [256, 512, 64, 1, False, 'silu']] # 31-P4/16
+
+  - [-1, SCDown, [256, 3, 2, 'silu']] # 32-P5/32
+  - [[-1, 13], Concat, []] # 33-P5/32
+  - [-1, RepNCSPELAN4, [256, 512, 64, 1, False, 'silu']] # 34-P5/32
+
+decoder:
+  - [[6, 25, 28, 31, 34], DFINETransformer, {"feat_strides":[4, 4, 8, 16, 32], "hidden_dim": 256, "num_levels": 4, "num_layers": 3, "num_points": [2, 3, 6, 3], "dim_feedforward": 1024, "sdq_levels": 1, "sdq_pre_topk": 1024, "sdq_query_topk": 96, "sdq_grid_size": 0.025}]

@@ -1,0 +1,13 @@
+__include__:
+  - '../_fair132_common.yml'
+  - '../../datasets/visdrone2019.yml'
+
+output_dir: ./outputs/visdrone2019/ablation_sdq_cgrf_no_p2_no_dga_p1536
+
+DRQ_DETR:
+  yaml_path: configs/models/sdq_cgrf_p1536_q96_arch.yml
+
+DEIMCriterion:
+  weight_dict: {loss_mal: 1, loss_bbox: 5, loss_giou: 2, loss_fgl: 0.15, loss_ddf: 1.5}
+  losses: [mal, boxes, local]
+  gamma: 1.5

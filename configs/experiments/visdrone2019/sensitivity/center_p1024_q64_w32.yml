@@ -1,0 +1,10 @@
+# Sensitivity-study center: pre-top-k 1024, query-top-k 64, P2 width 32.
+# DGA is disabled here so SDQ and Thin-P2 effects are isolated.
+__include__:
+  - '../../_fair132_common.yml'
+  - '../../../datasets/visdrone2019.yml'
+
+output_dir: ./outputs/visdrone2019/sensitivity/center_p1024_q64_w32
+
+DRQ_DETR:
+  yaml_path: configs/models/sensitivity/visdrone2019/default_pre1024_q64_w32_arch.yml

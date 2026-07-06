@@ -1,0 +1,31 @@
+{
+  "runs": [
+    {
+      "dataset": "SARD",
+      "group": "main",
+      "model": "DRQ-DETR",
+      "backend": "drq_detr",
+      "config": "configs/experiments/sard/drq_detr.yml",
+      "checkpoint": "checkpoints/sard/drq_detr/best_stg2.pth",
+      "prefer_ema": true
+    },
+    {
+      "dataset": "SeaDronesSee-ODv2",
+      "group": "main",
+      "model": "DRQ-DETR",
+      "backend": "drq_detr",
+      "config": "configs/experiments/seadronessee_odv2/drq_detr.yml",
+      "checkpoint": "checkpoints/seadronessee_odv2/drq_detr/best_stg2.pth",
+      "prefer_ema": true
+    },
+    {
+      "dataset": "VisDrone2019",
+      "group": "main",
+      "model": "DRQ-DETR",
+      "backend": "drq_detr",
+      "config": "configs/experiments/visdrone2019/drq_detr.yml",
+      "checkpoint": "checkpoints/visdrone2019/drq_detr/best_stg2.pth",
+      "prefer_ema": true
+    }
+  ]
+}

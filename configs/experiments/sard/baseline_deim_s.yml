@@ -1,0 +1,5 @@
+__include__:
+  - '../_baseline132_common.yml'
+  - '../../datasets/sard.yml'
+
+output_dir: ./outputs/sard/baseline_deim_s

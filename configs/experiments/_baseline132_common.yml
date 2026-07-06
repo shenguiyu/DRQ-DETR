@@ -1,0 +1,51 @@
+__include__:
+  - '../base/dfine_hgnetv2_s_custom.yml'
+
+model: DEIM
+print_freq: 100
+
+epoches: 132
+flat_epoch: 64
+no_aug_epoch: 12
+lr_gamma: 1
+warmup_iter: 500
+
+use_amp: True
+use_ema: True
+
+HGNetv2:
+  pretrained: False
+
+optimizer:
+  type: AdamW
+  params:
+    -
+      params: '^(?=.*backbone)(?!.*norm|bn).*$'
+      lr: 0.0002
+    -
+      params: '^(?=.*backbone)(?=.*norm|bn).*$'
+      lr: 0.0002
+      weight_decay: 0.
+    -
+      params: '^(?=.*(?:encoder|decoder))(?=.*(?:norm|bn|bias)).*$'
+      weight_decay: 0.
+  lr: 0.0004
+  betas: [0.9, 0.999]
+  weight_decay: 0.0001
+
+train_dataloader:
+  dataset:
+    transforms:
+      policy:
+        epoch: [4, 64, 120]
+  collate_fn:
+    base_size_repeat: 3
+    mixup_prob: 0.0
+    mixup_epochs: [4, 64]
+    stop_epoch: 120
+  total_batch_size: 12
+  num_workers: 8
+
+val_dataloader:
+  total_batch_size: 12
+  num_workers: 8

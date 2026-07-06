@@ -1,0 +1,58 @@
+{
+  "runs": [
+    {
+      "dataset": "SARD",
+      "group": "DGA ablation",
+      "model": "P2-64 without DGA",
+      "backend": "drq_detr",
+      "config": "configs/experiments/sard/drq_detr.yml",
+      "checkpoint": "checkpoints/sard/drq_detr/best_stg2.pth",
+      "prefer_ema": true
+    },
+    {
+      "dataset": "SARD",
+      "group": "DGA ablation",
+      "model": "P2-64 with DGA",
+      "backend": "drq_detr",
+      "config": "configs/experiments/sard/drq_detr_with_dga.yml",
+      "checkpoint": "checkpoints/sard/drq_detr_with_dga/best_stg2.pth",
+      "prefer_ema": true
+    },
+    {
+      "dataset": "SeaDronesSee-ODv2",
+      "group": "DGA ablation",
+      "model": "P2-64 without DGA",
+      "backend": "drq_detr",
+      "config": "configs/experiments/seadronessee_odv2/drq_detr.yml",
+      "checkpoint": "checkpoints/seadronessee_odv2/drq_detr/best_stg2.pth",
+      "prefer_ema": true
+    },
+    {
+      "dataset": "SeaDronesSee-ODv2",
+      "group": "DGA ablation",
+      "model": "P2-64 with DGA",
+      "backend": "drq_detr",
+      "config": "configs/experiments/seadronessee_odv2/drq_detr_with_dga.yml",
+      "checkpoint": "checkpoints/seadronessee_odv2/drq_detr_with_dga/best_stg2.pth",
+      "prefer_ema": true
+    },
+    {
+      "dataset": "VisDrone2019",
+      "group": "DGA ablation",
+      "model": "P2-64 without DGA",
+      "backend": "drq_detr",
+      "config": "configs/experiments/visdrone2019/drq_detr.yml",
+      "checkpoint": "checkpoints/visdrone2019/drq_detr/best_stg2.pth",
+      "prefer_ema": true
+    },
+    {
+      "dataset": "VisDrone2019",
+      "group": "DGA ablation",
+      "model": "P2-64 with DGA",
+      "backend": "drq_detr",
+      "config": "configs/experiments/visdrone2019/drq_detr_with_dga.yml",
+      "checkpoint": "checkpoints/visdrone2019/drq_detr_with_dga/best_stg2.pth",
+      "prefer_ema": true
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+__include__:
+  - './center_p1024_q64_w32.yml'
+
+output_dir: ./outputs/visdrone2019/sensitivity/combo_w64_q96_p1536
+
+DRQ_DETR:
+  yaml_path: configs/models/sensitivity/visdrone2019/combo_w64_q96_p1536_arch.yml

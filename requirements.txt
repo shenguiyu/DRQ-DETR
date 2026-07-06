@@ -1,0 +1,18 @@
+# Install PyTorch and torchvision separately for your CUDA version.
+# The paper environment used Python 3.10, PyTorch 2.3.0, and torchvision 0.18.0.
+
+PyYAML>=6.0
+numpy>=1.24
+scipy>=1.10
+Pillow>=9.5
+opencv-python>=4.8
+matplotlib>=3.7
+tqdm>=4.66
+psutil>=5.9
+packaging>=23.0
+tensorboard>=2.14
+faster-coco-eval>=1.6.5
+tidecv>=1.0.1
+calflops>=0.3.2
+thop>=0.1.1.post2209072238
+prettytable>=3.9

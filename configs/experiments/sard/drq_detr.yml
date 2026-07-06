@@ -1,0 +1,15 @@
+# Final paper configuration: DRQ-DETR-P2-64 without DGA.
+__include__:
+  - '../_fair132_common.yml'
+  - '../../datasets/sard.yml'
+
+output_dir: ./outputs/sard/drq_detr
+
+DRQ_DETR:
+  yaml_path: configs/models/drq_detr_p2_64.yml
+
+DEIMCriterion:
+  weight_dict: {loss_mal: 1, loss_bbox: 5, loss_giou: 2, loss_fgl: 0.15, loss_ddf: 1.5}
+  losses: ['mal', 'boxes', 'local']
+  gamma: 1.5
+

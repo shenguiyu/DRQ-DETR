@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.venv/
+venv/
+env/
+conda/
+
+# Training outputs
+outputs/
+runs/
+logs/
+tensorboard/
+artifacts/
+results/
+checkpoints/
+local_artifacts/
+*.log
+events.out.tfevents*
+
+# Datasets and weights
+data/
+datasets/
+weights/
+weight/
+*.pth
+*.pt
+*.onnx
+*.engine
+*.safetensors
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.local.yml
+*.local.yaml
+
+# Generated benchmark and evaluation files
+fps_results*.csv
+fps_results*.json
+eval_results*.json
+
+# Local editors and OS files
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

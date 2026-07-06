@@ -1,0 +1,32 @@
+{
+  "sard": {
+    "baseline": "configs/experiments/sard/baseline_deim_s.yml",
+    "a1_sdq": "configs/experiments/sard/ablation_sdq_only.yml",
+    "a2_sdq_cgrf": "configs/experiments/sard/ablation_sdq_cgrf_no_p2_no_dga.yml",
+    "a3_sdq_cgrf_dga": "configs/experiments/sard/ablation_sdq_cgrf_no_p2_with_dga.yml",
+    "p2_32": "configs/experiments/sard/ablation_p2_32_no_dga.yml",
+    "p2_32_dga": "configs/experiments/sard/ablation_p2_32_with_dga.yml",
+    "p2_64": "configs/experiments/sard/drq_detr.yml",
+    "p2_64_dga": "configs/experiments/sard/drq_detr_with_dga.yml"
+  },
+  "seadronessee_odv2": {
+    "a1_sdq_dspr": "configs/experiments/seadronessee_odv2/ablation_sdq_only.yml",
+    "a2_sdq_dspr_cgrf": "configs/experiments/seadronessee_odv2/ablation_sdq_cgrf_no_p2_no_dga.yml",
+    "final_p2_64": "configs/experiments/seadronessee_odv2/drq_detr.yml"
+  },
+  "visdrone2019": {
+    "a1_sdq_dspr": "configs/experiments/visdrone2019/ablation_sdq_only.yml",
+    "a2_sdq_dspr_cgrf": "configs/experiments/visdrone2019/ablation_sdq_cgrf_no_p2_no_dga.yml",
+    "final_p2_64": "configs/experiments/visdrone2019/drq_detr.yml",
+    "sens_center_p1024_q64_w32": "configs/experiments/visdrone2019/sensitivity/center_p1024_q64_w32.yml",
+    "sens_pre_topk_512": "configs/experiments/visdrone2019/sensitivity/pre_topk_512.yml",
+    "sens_pre_topk_1536": "configs/experiments/visdrone2019/sensitivity/pre_topk_1536.yml",
+    "sens_query_topk_32": "configs/experiments/visdrone2019/sensitivity/query_topk_32.yml",
+    "sens_query_topk_96": "configs/experiments/visdrone2019/sensitivity/query_topk_96.yml",
+    "sens_p2_width_16": "configs/experiments/visdrone2019/sensitivity/thin_p2_width_16.yml",
+    "sens_p2_width_64": "configs/experiments/visdrone2019/sensitivity/thin_p2_width_64.yml",
+    "sens_w64_q64_p1536": "configs/experiments/visdrone2019/sensitivity/combo_w64_q64_p1536.yml",
+    "sens_w64_q96_p1024": "configs/experiments/visdrone2019/sensitivity/combo_w64_q96_p1024.yml",
+    "sens_w64_q96_p1536": "configs/experiments/visdrone2019/sensitivity/combo_w64_q96_p1536.yml"
+  }
+}

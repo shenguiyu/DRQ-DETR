@@ -1,0 +1,17 @@
+DRQ-DETR
+Copyright 2026 DRQ-DETR contributors
+
+This software includes or adapts components from open-source research code,
+including DEIM, D-FINE, RT-DETR, DETR, torchvision, PaddleDetection, and
+Ultralytics-related utilities.
+
+Relevant upstream references include:
+
+- RT-DETR: https://github.com/lyuwenyu/RT-DETR
+- D-FINE: https://github.com/Peterande/D-FINE
+- DETR: https://github.com/facebookresearch/detr
+- torchvision: https://github.com/pytorch/vision
+- PaddleDetection: https://github.com/PaddlePaddle/PaddleDetection
+
+Original source-file copyright and attribution notices are retained. This
+NOTICE does not replace the license terms of any upstream component.

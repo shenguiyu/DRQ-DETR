@@ -1,0 +1,7 @@
+__include__:
+  - './center_p1024_q64_w32.yml'
+
+output_dir: ./outputs/visdrone2019/sensitivity/query_topk_32
+
+DRQ_DETR:
+  yaml_path: configs/models/sensitivity/visdrone2019/query_topk_32_arch.yml

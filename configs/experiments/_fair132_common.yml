@@ -1,0 +1,49 @@
+__include__:
+  - '../base/dfine_hgnetv2_s_custom.yml'
+  - '../base/deim.yml'
+
+# Shared fair-training protocol used by every paper experiment.
+# Dataset definitions and architecture selections are provided by child files.
+model: DRQ_DETR
+print_freq: 400
+
+epoches: 132
+flat_epoch: 64
+no_aug_epoch: 12
+
+use_amp: True
+use_ema: True
+
+PResNet:
+  pretrained: False
+
+HGNetv2:
+  pretrained: False
+
+optimizer:
+  type: AdamW
+  params:
+    -
+      params: '^(?=.*backbone)(?!.*(bn|norm)).*$'
+      lr: 0.0002
+    -
+      params: '^(?=.*(?:norm|bn)).*$'
+      weight_decay: 0.
+  lr: 0.0004
+  betas: [0.9, 0.999]
+  weight_decay: 0.0001
+
+train_dataloader:
+  dataset:
+    transforms:
+      policy:
+        epoch: [4, 64, 120]
+  collate_fn:
+    mixup_epochs: [4, 64]
+    stop_epoch: 120
+  total_batch_size: 12
+  num_workers: 8
+
+val_dataloader:
+  total_batch_size: 12
+  num_workers: 8

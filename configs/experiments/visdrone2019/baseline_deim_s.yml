@@ -1,0 +1,6 @@
+__include__:
+  - '../_fair132_common.yml'
+  - '../../datasets/visdrone2019.yml'
+
+model: DEIM
+output_dir: ./outputs/visdrone2019/baseline_deim_s

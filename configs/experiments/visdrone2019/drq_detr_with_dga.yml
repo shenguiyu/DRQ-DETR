@@ -1,0 +1,7 @@
+# Controlled DGA ablation using the same P2-64 architecture as DRQ-DETR.
+__include__:
+  - './drq_detr.yml'
+  - '../_dga_regularizer.yml'
+
+output_dir: ./outputs/visdrone2019/drq_detr_with_dga
+
