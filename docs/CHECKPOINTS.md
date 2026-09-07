@@ -14,7 +14,7 @@ checkpoints/
     `-- drq_detr/best_stg2.pth
 ```
 
-For every released experiment, also retain:
+For every shared experiment package, also retain:
 
 ```text
 args.json
@@ -24,8 +24,23 @@ best_stg1.pth
 best_stg2.pth
 ```
 
-Large intermediate checkpoints do not need to be tracked by Git. Publish them
-through a release asset, institutional repository, or reviewer-only archive.
+Large intermediate checkpoints do not need to be tracked by Git. If weights are
+shared later, publish them through a GitHub Release asset, institutional
+repository, or reviewer-only archive.
+
+## Author-Provided Training Result Archive
+
+The current reviewer-facing training result archive is shared outside Git:
+
+```text
+Baidu Netdisk: https://pan.baidu.com/s/1ZkrMin5tb2IFsejybHesAQ?pwd=0871
+Extraction code: 0871
+Archive label: 训练结果
+```
+
+The archive should be treated as the source of trained checkpoints and raw
+training/evaluation logs. Git still excludes binary checkpoint files and local
+training outputs.
 
 ## Which Checkpoint to Report
 

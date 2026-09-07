@@ -1,4 +1,4 @@
-# Budget-aware P2 access control. It uses a lightweight conventional
+# Budget-aware P2 access control. It uses a reduced-width conventional
 # P2 FPN/PAN branch without DSPR, CGRF, or SDQ.
 backbone:
   - [-1, StemBlock, [16, 16, True]] # 0-P2/4

@@ -19,6 +19,14 @@ Use this checklist before packaging DRQ-DETR for GitHub or reviewer access.
 - P2 access controls are kept under each dataset folder in `causal_p2/`.
 - Sensitivity runs are kept under `configs/experiments/visdrone2019/sensitivity/`.
 
+## External training result archive
+
+- Baidu Netdisk: `https://pan.baidu.com/s/1ZkrMin5tb2IFsejybHesAQ?pwd=0871`
+- Extraction code: `0871`
+- Archive label: `训练结果`
+- The archive is external to Git and should contain checkpoints plus raw
+  training/evaluation logs for reviewer verification.
+
 ## Files not to upload
 
 Do not upload local or generated artifacts to the source repository:

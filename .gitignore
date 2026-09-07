@@ -18,16 +18,18 @@ logs/
 tensorboard/
 artifacts/
 results/
-checkpoints/
+checkpoints/*
+!checkpoints/
+!checkpoints/README.md
 local_artifacts/
 *.log
 events.out.tfevents*
 
 # Datasets and weights
-data/
-datasets/
-weights/
-weight/
+/data/
+/datasets/
+/weights/
+/weight/
 *.pth
 *.pt
 *.onnx

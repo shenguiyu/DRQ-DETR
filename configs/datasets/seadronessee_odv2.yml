@@ -1,0 +1,44 @@
+task: detection
+
+evaluator:
+  type: CocoEvaluator
+  iou_types: ['bbox']
+
+# The converted annotation file contains category id 0 as an ignored category
+# and five evaluated foreground categories (swimmer, boat, jetski,
+# life-saving appliance, and buoy). The model head keeps six category slots to
+# preserve the original category ids without remapping.
+num_classes: 6
+remap_mscoco_category: False
+
+train_dataloader:
+  type: DataLoader
+  dataset:
+    type: CocoDetection
+    img_folder: ./data/seadronessee_odv2/images/train
+    ann_file: ./data/seadronessee_odv2/annotations/instances_train.json
+    return_masks: False
+    transforms:
+      type: Compose
+      ops: ~
+  shuffle: True
+  drop_last: True
+  pin_memory: True
+  collate_fn:
+    type: BatchImageCollateFunction
+
+val_dataloader:
+  type: DataLoader
+  dataset:
+    type: CocoDetection
+    img_folder: ./data/seadronessee_odv2/images/val
+    ann_file: ./data/seadronessee_odv2/annotations/instances_val.json
+    return_masks: False
+    transforms:
+      type: Compose
+      ops: ~
+  shuffle: False
+  drop_last: False
+  pin_memory: True
+  collate_fn:
+    type: BatchImageCollateFunction

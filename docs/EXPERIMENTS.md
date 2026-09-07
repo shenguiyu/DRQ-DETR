@@ -9,12 +9,12 @@ paper. Every DRQ-DETR experiment uses the common 132-epoch protocol in
 
 | Dataset | Config | Architecture |
 |---|---|---|
-| SARD | `configs/experiments/sard/drq_detr.yml` | Thin-P2-64, P1024-Q64 |
-| SeaDronesSee-ODv2 | `configs/experiments/seadronessee_odv2/drq_detr.yml` | Thin-P2-64, P1024-Q64 |
-| VisDrone2019 | `configs/experiments/visdrone2019/drq_detr.yml` | Thin-P2-64, P1024-Q64 |
+| SARD | `configs/experiments/sard/drq_detr.yml` | Thin P2-64, P1024-Q64 |
+| SeaDronesSee-ODv2 | `configs/experiments/seadronessee_odv2/drq_detr.yml` | Thin P2-64, P1024-Q64 |
+| VisDrone2019 | `configs/experiments/visdrone2019/drq_detr.yml` | Thin P2-64, P1024-Q64 |
 
 All three resolve to `configs/models/drq_detr_p2_64.yml`, which fixes
-`sdq_pre_topk=1024`, `sdq_query_topk=64`, and Thin-P2 width 64.
+`sdq_pre_topk=1024`, `sdq_query_topk=64`, and Thin P2 width 64.
 
 ## Ablation Ladder
 
@@ -74,7 +74,7 @@ configs/models/sensitivity/visdrone2019/
 | `combo_w64_q96_p1024.yml` | 1024 | 96 | 64 |
 | `combo_w64_q96_p1536.yml` | 1536 | 96 | 64 |
 
-The final cross-dataset P2-64 model is the separate canonical `drq_detr.yml`
+The final cross-dataset Thin P2-64 model is the separate canonical `drq_detr.yml`
 config.
 
 ## Example Commands

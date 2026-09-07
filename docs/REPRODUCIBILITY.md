@@ -64,7 +64,9 @@ software stacks.
 
 ## Efficiency Evaluation
 
-The default paper-aligned benchmark uses:
+The benchmark script can report model-only and total timing depending on the
+post-processing option. The paper efficiency table uses the forward-only
+setting below:
 
 | Item | Setting |
 |---|---:|
@@ -76,12 +78,21 @@ The default paper-aligned benchmark uses:
 | Timed iterations | 100 |
 | Timing | CUDA events |
 | Synchronization | Before reading elapsed time |
-| Scope | Model plus post-processing |
+| Scope | Model forward only |
+| Excluded | preprocessing, NMS, and other post-processing |
 
 Run:
 
 ```bash
-python scripts/benchmark_fps.py
+python scripts/benchmark_fps.py \
+  --manifest scripts/fps_benchmark_manifest.json \
+  --device cuda:0 \
+  --imgsz 640 \
+  --batch-size 1 \
+  --warmup 30 \
+  --iters 100 \
+  --precision fp32 \
+  --no-postprocess
 ```
 
 Do not compare FPS values measured with different precision, batch size, image
