@@ -1,5 +1,5 @@
 # Sensitivity-study center: pre-top-k 1024, query-top-k 64, P2 width 32.
-# DGA is disabled here so SDQ and Thin-P2 effects are isolated.
+# This center setting isolates SDQ and Thin-P2 effects.
 __include__:
   - '../../_fair132_common.yml'
   - '../../../datasets/visdrone2019.yml'

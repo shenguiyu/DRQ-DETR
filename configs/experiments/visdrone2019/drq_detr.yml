@@ -1,8 +1,9 @@
+# Final paper configuration: DRQ-DETR-P2-64.
 __include__:
   - '../_fair132_common.yml'
   - '../../datasets/visdrone2019.yml'
 
-output_dir: ./outputs/visdrone2019/drq_detr_p2_64_p1024_q64_nodga
+output_dir: ./outputs/visdrone2019/drq_detr_p2_64_p1024_q64
 
 DRQ_DETR:
   yaml_path: configs/models/drq_detr_p2_64.yml

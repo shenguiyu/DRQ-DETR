@@ -6,8 +6,7 @@ DRQ-DETR is the code release for a drone-view small-object detector designed
 around three detail-aware components: a detail-semantic proxy router, sparse
 detail query selection, and cross-granularity receptive-field fusion. The final
 public model uses a 64-channel Thin-P2 value path, selects 64 detail-aware
-queries from 1024 proxy candidates, and keeps Detail Gate Alignment (DGA)
-disabled by default.
+queries from 1024 proxy candidates.
 
 This repository is prepared for paper review and reproduction. It contains the
 model implementation, final experiment configs, ablation and sensitivity
@@ -55,7 +54,6 @@ The paper name **DRQ-DETR** refers to the fixed public configuration below.
 | Semantic queries | 236 |
 | Decoder value strides | 4, 8, 16, 32 |
 | Thin-P2 width | 64 channels |
-| DGA regularizer | Disabled |
 
 Canonical final architecture:
 
@@ -71,10 +69,36 @@ configs/experiments/seadronessee_odv2/drq_detr.yml
 configs/experiments/visdrone2019/drq_detr.yml
 ```
 
+## SeaDronesSee-ODv2 Reproduction Map
+
+The SeaDronesSee-ODv2 paper runs should be launched from the experiment-level
+YAML files under `configs/experiments/seadronessee_odv2/`. These files inherit
+the shared 132-epoch fair-training protocol, load the SeaDronesSee-ODv2 dataset
+definition, and then point to the corresponding model graph.
+
+| Result to reproduce | Experiment config | Model graph |
+|---|---|---|
+| DEIM-S baseline | `configs/experiments/seadronessee_odv2/baseline_deim_s.yml` | Built from the DEIM base config |
+| DSPR + SDQ only | `configs/experiments/seadronessee_odv2/ablation_sdq_only.yml` | `configs/models/drq_detr_sdq_only.yml` |
+| DSPR + CGRF + SDQ, no Thin-P2 value path | `configs/experiments/seadronessee_odv2/ablation_sdq_cgrf_no_p2.yml` | `configs/models/drq_detr_sdq_cgrf.yml` |
+| Thin-P2-32 ablation | `configs/experiments/seadronessee_odv2/ablation_p2_32.yml` | `configs/models/drq_detr_thinp2_32.yml` |
+| Final DRQ-DETR, Thin-P2-64, P1024-Q64 | `configs/experiments/seadronessee_odv2/drq_detr.yml` | `configs/models/drq_detr_p2_64.yml` |
+| Alternate P1536-Q96 setting | `configs/experiments/seadronessee_odv2/drq_detr_p1536.yml` | `configs/models/drq_detr_p2_64_p1536_q96_arch.yml` |
+| DEIM-S + direct P2 | `configs/experiments/seadronessee_odv2/causal_p2/direct_p2_seed0.yml` | `configs/models/causal_p2/deim_s_direct_p2.yml` |
+| DEIM-S + Thin-P2-only | `configs/experiments/seadronessee_odv2/causal_p2/thin_p2_only_seed0.yml` | `configs/models/causal_p2/deim_s_thin_p2_only.yml` |
+
+Example final run:
+
+```bash
+python train.py \
+  -c configs/experiments/seadronessee_odv2/drq_detr.yml \
+  --seed 0
+```
+
 ## Main Paper Results
 
-The table below reports the final P2-64 model without DGA. Accuracy is
-COCO-style AP in percentage points. FPS was measured with the repository
+The table below reports the final P2-64 model. Accuracy is COCO-style AP in
+percentage points. FPS was measured with the repository
 benchmark on a single NVIDIA GeForce RTX 4090, FP32, batch size 1, 640 x 640
 input, 30 warmup iterations, and 100 measured iterations. Post-processing is
 included where applicable.
@@ -323,7 +347,7 @@ Resume:
 ```bash
 python train.py \
   -c configs/experiments/visdrone2019/drq_detr.yml \
-  -r outputs/visdrone2019/drq_detr_p2_64_p1024_q64_nodga/last.pth \
+  -r outputs/visdrone2019/drq_detr_p2_64_p1024_q64/last.pth \
   --seed 0
 ```
 
@@ -350,17 +374,25 @@ The public ablation names encode the experimental factors:
 
 ```text
 ablation_sdq_only.yml
-ablation_sdq_cgrf_no_p2_no_dga.yml
-ablation_sdq_cgrf_no_p2_with_dga.yml
-ablation_p2_32_no_dga.yml
-ablation_p2_32_with_dga.yml
+ablation_sdq_cgrf_no_p2.yml
+ablation_sdq_cgrf_no_p2_p1536.yml
+ablation_p2_32.yml
+drq_detr_p1536.yml
 drq_detr.yml
-drq_detr_with_dga.yml
 ```
 
-DGA is a training-only optional regularizer. It does not add inference-time
-parameters or GFLOPs and is disabled in the final model. Files containing
-`with_dga` explicitly enable it for controlled analysis only.
+P2 access strategy controls are stored in each dataset directory under
+`causal_p2/`, for example:
+
+```text
+causal_p2/direct_p2_seed0.yml
+causal_p2/thin_p2_only_seed0.yml
+causal_p2/fpn_pan_p2_seed0.yml
+causal_p2/fpn_pan_p2_budget_seed0.yml
+```
+
+Only the controls that were actually run for a dataset are provided in that
+dataset directory.
 
 VisDrone2019 sensitivity configs are stored in:
 
@@ -405,7 +437,7 @@ Before reporting a run or comparing checkpoints:
 6. Evaluate `best_stg2.pth`, preferably from EMA weights.
 7. Confirm that checkpoint keys load into the intended architecture.
 8. Measure FPS with batch size 1, FP32, and the same post-processing scope.
-9. Do not mix P2-32/P2-64 or DGA/non-DGA configs.
+9. Do not mix P2-32/P2-64, Q64/Q96, or direct/Thin-P2/FPN-PAN P2 control configs.
 10. Run `python scripts/check_configs.py --build-model` before release.
 
 The shorter release checklist is in `docs/REVIEWER_RELEASE_CHECKLIST.md`.

@@ -7,14 +7,11 @@ Use the following portable layout:
 ```text
 checkpoints/
 |-- sard/
-|   |-- drq_detr/best_stg2.pth
-|   `-- drq_detr_with_dga/best_stg2.pth
+|   `-- drq_detr/best_stg2.pth
 |-- seadronessee_odv2/
-|   |-- drq_detr/best_stg2.pth
-|   `-- drq_detr_with_dga/best_stg2.pth
+|   `-- drq_detr/best_stg2.pth
 `-- visdrone2019/
-    |-- drq_detr/best_stg2.pth
-    `-- drq_detr_with_dga/best_stg2.pth
+    `-- drq_detr/best_stg2.pth
 ```
 
 For every released experiment, also retain:
@@ -72,14 +69,15 @@ not belong to the same experiment.
 
 ```bash
 python train.py \
-  -c configs/experiments/sard/drq_detr.yml \
-  -r checkpoints/sard/drq_detr/best_stg2.pth \
+  -c configs/experiments/seadronessee_odv2/drq_detr.yml \
+  -r checkpoints/seadronessee_odv2/drq_detr/best_stg2.pth \
   --test-only
 ```
 
 Do not pair:
 
 - a P2-32 checkpoint with `drq_detr_p2_64.yml`;
+- a Q96 checkpoint with the final Q64 config;
 - a different dataset head without deliberate head conversion;
 - generated sensitivity metadata with a different architecture YAML;
 - `best_stg1.pth` metrics with a table labeled as the final model.

@@ -11,15 +11,13 @@ Use this checklist before packaging DRQ-DETR for GitHub or reviewer access.
   - `configs/experiments/visdrone2019/drq_detr.yml`
 - SDQ settings: `sdq_pre_topk=1024`, `sdq_query_topk=64`
 - Thin-P2 width: 64 channels
-- DGA: disabled in all final configs
 - Training protocol: 132 epochs, batch size 12, seed 0, no pretrained backbone
 
 ## Optional reproducibility configs
 
 - Ablations are kept under each dataset folder with explicit names.
+- P2 access controls are kept under each dataset folder in `causal_p2/`.
 - Sensitivity runs are kept under `configs/experiments/visdrone2019/sensitivity/`.
-- DGA is available only through files that explicitly include `with_dga` or
-  `_dga_regularizer.yml`; it is not part of the final public model.
 
 ## Files not to upload
 
@@ -47,5 +45,5 @@ Optional model construction check:
 python scripts/check_configs.py --build-model
 ```
 
-The validation script checks final SDQ settings, DGA state, local machine paths,
-missing architecture references, and FPS manifest paths.
+The validation script checks final SDQ settings, local machine paths, missing
+architecture references, and FPS manifest paths.

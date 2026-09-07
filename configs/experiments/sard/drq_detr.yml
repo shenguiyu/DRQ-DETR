@@ -1,4 +1,4 @@
-# Final paper configuration: DRQ-DETR-P2-64 without DGA.
+# Final paper configuration: DRQ-DETR-P2-64.
 __include__:
   - '../_fair132_common.yml'
   - '../../datasets/sard.yml'

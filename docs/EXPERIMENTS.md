@@ -1,36 +1,56 @@
 # Experiment Configuration Map
 
 This document maps the public config names to the factors evaluated in the
-paper. Every dataset uses the common 132-epoch protocol in
-`configs/experiments/_fair132_common.yml`.
+paper. Every DRQ-DETR experiment uses the common 132-epoch protocol in
+`configs/experiments/_fair132_common.yml`, while the DEIM-S baseline uses
+`configs/experiments/_baseline132_common.yml`.
 
 ## Canonical Final Configs
 
-| Dataset | Config | Architecture | DGA |
-|---|---|---|---|
-| SARD | `configs/experiments/sard/drq_detr.yml` | P2-64 | No |
-| SeaDronesSee-ODv2 | `configs/experiments/seadronessee_odv2/drq_detr.yml` | P2-64 | No |
-| VisDrone2019 | `configs/experiments/visdrone2019/drq_detr.yml` | P2-64 | No |
+| Dataset | Config | Architecture |
+|---|---|---|
+| SARD | `configs/experiments/sard/drq_detr.yml` | Thin-P2-64, P1024-Q64 |
+| SeaDronesSee-ODv2 | `configs/experiments/seadronessee_odv2/drq_detr.yml` | Thin-P2-64, P1024-Q64 |
+| VisDrone2019 | `configs/experiments/visdrone2019/drq_detr.yml` | Thin-P2-64, P1024-Q64 |
 
 All three resolve to `configs/models/drq_detr_p2_64.yml`, which fixes
-`sdq_pre_topk=1024`, `sdq_query_topk=64`, Thin-P2 width 64, and DGA disabled.
+`sdq_pre_topk=1024`, `sdq_query_topk=64`, and Thin-P2 width 64.
 
 ## Ablation Ladder
 
 The same naming scheme is available in each dataset folder.
 
-| Public config | SDQ/DSPR | CGRF | DGA | P2 value path |
-|---|---:|---:|---:|---:|
-| `ablation_sdq_only.yml` | Yes | No | No | No |
-| `ablation_sdq_cgrf_no_p2_no_dga.yml` | Yes | Yes | No | No |
-| `ablation_sdq_cgrf_no_p2_with_dga.yml` | Yes | Yes | Yes | No |
-| `ablation_p2_32_no_dga.yml` | Yes | Yes | No | Width 32 |
-| `ablation_p2_32_with_dga.yml` | Yes | Yes | Yes | Width 32 |
-| `drq_detr.yml` | Yes | Yes | No | Width 64 |
-| `drq_detr_with_dga.yml` | Yes | Yes | Yes | Width 64 |
+| Public config | SDQ/DSPR | CGRF | P2 value path |
+|---|---:|---:|---:|
+| `baseline_deim_s.yml` | No | No | No |
+| `ablation_sdq_only.yml` | Yes | No | No |
+| `ablation_sdq_cgrf_no_p2.yml` | Yes | Yes | No |
+| `ablation_p2_32.yml` | Yes | Yes | Width 32 |
+| `drq_detr.yml` | Yes | Yes | Width 64 |
 
-DGA changes the training criterion only. Matched DGA and non-DGA configs use
-the same network architecture, parameter count, and inference graph.
+Alternate P1536-Q96 files are retained for auxiliary checks:
+
+```text
+ablation_sdq_only_p1536.yml
+ablation_sdq_cgrf_no_p2_p1536.yml
+drq_detr_p1536.yml
+```
+
+## P2 Access Strategy Controls
+
+Controlled high-resolution access experiments are stored in
+`configs/experiments/*/causal_p2/` and use model graphs from
+`configs/models/causal_p2/`.
+
+| Public config | Purpose | Model graph |
+|---|---|---|
+| `direct_p2_seed0.yml` | DEIM-S with directly projected P2 value feature | `configs/models/causal_p2/deim_s_direct_p2.yml` |
+| `thin_p2_only_seed0.yml` | DEIM-S with Thin-P2 value path only | `configs/models/causal_p2/deim_s_thin_p2_only.yml` |
+| `fpn_pan_p2_seed0.yml` | DEIM-S with conventional full-width P2 FPN/PAN path | `configs/models/causal_p2/deim_s_fpn_pan_p2.yml` |
+| `fpn_pan_p2_budget_seed0.yml` | Budget-aware P2 FPN/PAN control | `configs/models/causal_p2/deim_s_fpn_pan_p2_budget.yml` |
+
+Only the controls that were actually run for a dataset are provided in that
+dataset directory.
 
 ## Sensitivity Study
 
@@ -54,36 +74,20 @@ configs/models/sensitivity/visdrone2019/
 | `combo_w64_q96_p1024.yml` | 1024 | 96 | 64 |
 | `combo_w64_q96_p1536.yml` | 1536 | 96 | 64 |
 
-These configs keep DGA disabled so that SDQ quotas and Thin-P2 width are
-isolated from the optional training regularizer. The final cross-dataset
-P2-64 model is the separate canonical `drq_detr.yml` config.
-
-## Legacy Aliases
-
-Historical training products may refer to the following files:
-
-| Legacy file | Canonical replacement |
-|---|---|
-| `drq_detr_full.yml` | `drq_detr.yml` |
-| `ablation_thinp2_no_dga.yml` | `ablation_p2_32_no_dga.yml` |
-| `ablation_sdq_cgrf_no_dga.yml` | `ablation_sdq_cgrf_no_p2_no_dga.yml` |
-| `ablation_sdq_cgrf_dga_no_p2.yml` | `ablation_sdq_cgrf_no_p2_with_dga.yml` |
-
-Aliases are retained to validate historical checkpoints. New commands and
-release metadata should use canonical names.
+The final cross-dataset P2-64 model is the separate canonical `drq_detr.yml`
+config.
 
 ## Example Commands
 
 ```bash
 # Final model
 python train.py \
-  -c configs/experiments/sard/drq_detr.yml \
+  -c configs/experiments/seadronessee_odv2/drq_detr.yml \
   --seed 0
 
-# Matched DGA comparison
+# One P2 access control
 python train.py \
-  -c configs/experiments/sard/drq_detr_with_dga.yml \
-  --seed 0
+  -c configs/experiments/seadronessee_odv2/causal_p2/direct_p2_seed0.yml
 
 # One sensitivity point
 python train.py \
