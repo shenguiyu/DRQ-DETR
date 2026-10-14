@@ -508,4 +508,12 @@ when redistributing or modifying this repository.
 
 ## Citation
 
-The formal citation will be added after the paper metadata are finalized.
+If you find DRQ-DETR useful in your research, please cite this repository:
+
+```bibtex
+@software{drqdetr2026,
+  author  = {{shenguiyu}},
+  title   = {DRQ-DETR: Detail-Routed Query Transformer for Drone-View Small Object Detection},
+  year    = {2026},
+  url     = {https://github.com/shenguiyu/DRQ-DETR}
+}
