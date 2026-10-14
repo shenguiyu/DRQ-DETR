@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import copy
 import contextlib
+import hashlib
 import csv
 import importlib
 import json
@@ -356,6 +357,8 @@ def build_deim_model(
         load_info = load_weights(
             model, checkpoint_path, prefer_ema=bool(entry.get("prefer_ema", True))
         )
+        if load_info["missing_keys"] or load_info["unexpected_keys"]:
+            raise RuntimeError("Incomplete checkpoint loading is not accepted for paper FPS.")
     load_info["code_path"] = str(code_path)
     return model, postprocessor, config_path, load_info
 
@@ -479,8 +482,23 @@ def benchmark_deim(
         "latency_total_p95_ms": percentile(total_times, 0.95),
         "fps_model": fps_from_latency(mean_or_zero(model_times)),
         "fps_total": fps_from_latency(mean_or_zero(total_times)),
+        "timing_samples_model_ms": model_times,
+        "timing_samples_postprocess_ms": post_times,
+        "timing_samples_total_ms": total_times,
+        "latency_model_std_ms": statistics.pstdev(model_times) if model_times else 0.0,
+        "config_sha256": hashlib.sha256(config_path.read_bytes()).hexdigest(),
+        "checkpoint_sha256": file_sha256(checkpoint) if checkpoint else "",
+        "graph_state": "eval; not deploy-fused",
         **load_info,
     }
+
+
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(8 * 1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
 
 
 def benchmark_rtdetr_official(

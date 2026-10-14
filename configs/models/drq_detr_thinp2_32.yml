@@ -1,6 +1,6 @@
 # Thin-P2-32 ablation architecture: DSPR + CGRF + SDQ with a 32-channel Thin-P2 value path.
 # P2/P3/P4/P5 denote feature levels at 1/4, 1/8, 1/16, and 1/32 input resolution.
-# Thin-P2 width = 32; SDQ uses pre_topk = 1024, query_topk = 96.
+# Thin-P2 width = 32; historical paper checkpoints use pre_topk = 1024, query_topk = 64.
 backbone:
   # [from, module, args]
   - [-1, StemBlock, [16, 16, True]] # 0-P2/4
@@ -55,4 +55,4 @@ encoder:
 
 decoder:
   # Input 6 is the DSPR proxy used by SDQ. Inputs 25/28/31/34 are value features V2-V5.
-  - [[6, 25, 28, 31, 34], DFINETransformer, {"feat_strides": [4, 4, 8, 16, 32], "hidden_dim": 256, "num_levels": 4, "num_layers": 3, "num_points": [2, 3, 6, 3], "dim_feedforward": 1024, "sdq_levels": 1, "sdq_pre_topk": 1024, "sdq_query_topk": 96, "sdq_grid_size": 0.025}]
+  - [[6, 25, 28, 31, 34], DFINETransformer, {"feat_strides": [4, 4, 8, 16, 32], "hidden_dim": 256, "num_levels": 4, "num_layers": 3, "num_points": [2, 3, 6, 3], "dim_feedforward": 1024, "sdq_levels": 1, "sdq_pre_topk": 1024, "sdq_query_topk": 64, "sdq_grid_size": 0.025}]

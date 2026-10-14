@@ -1,0 +1,249 @@
+{
+  "protocol_version": "native_deploy_ema_640_fp32_20261014",
+  "entry": "scripts/paper_evaluate.py",
+  "entry_sha256": "2983f159bb5b5b411968f5b3793fbb3e21afab4af6a1971870e17ce04e7e0a71",
+  "rows": [
+    {
+      "group": "validation",
+      "dataset": "SARD",
+      "model": "DEIM-S",
+      "split": "validation",
+      "percent": {
+        "ap": 58.44489593143708,
+        "ap50": 89.93735831646471,
+        "ap75": 65.95868247681193,
+        "aps": 28.77301642925944,
+        "apm": 61.25530003188029,
+        "apl": 71.5710802762738,
+        "ar100": 73.16473000683527
+      },
+      "checkpoint_sha256": "0e4e309e6080a08bbcc99aee9c1f4d24c870d51ac459709b03a95ba4608e2f8f",
+      "prediction_sha256": "fc79b12bcf170497799e708c243c6eb8172bb07d84e86cdf99719aca06a43362",
+      "annotation_sha256": "55c4d43965aa179c8df41cb97b25b78957dee93c9477f3f18b3baa6391cd31c7",
+      "source": "archived native test-only EMA/deploy pred.json and eval.pth",
+      "config": "configs/experiments/sard/baseline_deim_s.yml"
+    },
+    {
+      "group": "validation",
+      "dataset": "SARD",
+      "model": "DRQ-DETR",
+      "split": "validation",
+      "percent": {
+        "ap": 62.20935406081826,
+        "ap50": 92.34156191502699,
+        "ap75": 70.8897755025281,
+        "aps": 33.28642716608914,
+        "apm": 64.898541924042,
+        "apl": 75.12583773822726,
+        "ar100": 74.41558441558442
+      },
+      "checkpoint_sha256": "12a9737e0af2a747fe62b63777c9f0d9203cf0e7fd5b55cd335f7c2e460745cc",
+      "prediction_sha256": "ddd1ddcdadf104eea257ae27b87beeaa76924a0115c6bfc05f6b18e1a2a085c5",
+      "annotation_sha256": "55c4d43965aa179c8df41cb97b25b78957dee93c9477f3f18b3baa6391cd31c7",
+      "source": "archived native test-only EMA/deploy pred.json and eval.pth",
+      "config": "configs/experiments/sard/drq_detr.yml"
+    },
+    {
+      "group": "validation",
+      "dataset": "SeaDronesSee-ODv2",
+      "model": "DEIM-S",
+      "split": "validation",
+      "percent": {
+        "ap": 48.835486697479794,
+        "ap50": 82.3001415731058,
+        "ap75": 49.237730325357035,
+        "aps": 46.9680508047494,
+        "apm": 50.03916346563501,
+        "apl": 64.66377432135761,
+        "ar100": 63.527336924194955
+      },
+      "checkpoint_sha256": "385ebacc317e11d87a195718b1da5d9e29f589a4b1dd206d696c8f862fb32945",
+      "prediction_sha256": "fb1b2ced3e978b13e1c908f79fdcd5b2efc6f79b2c83c555828c79c33a342ef9",
+      "annotation_sha256": "9e965c832263e6b9b9dd299637833e5b93924ecf9a1780b16fbd7c53e4a63f5e",
+      "source": "archived native test-only EMA/deploy pred.json and eval.pth",
+      "config": "configs/experiments/seadronessee_odv2/baseline_deim_s.yml"
+    },
+    {
+      "group": "validation",
+      "dataset": "SeaDronesSee-ODv2",
+      "model": "DRQ-DETR",
+      "split": "validation",
+      "percent": {
+        "ap": 52.6523713298391,
+        "ap50": 84.62572460167826,
+        "ap75": 53.96140939919817,
+        "aps": 48.41692561046625,
+        "apm": 51.25222228082058,
+        "apl": 68.27217030775543,
+        "ar100": 66.84333664589462
+      },
+      "checkpoint_sha256": "f8379b1fc7e3f16b4abb14163e66315d1be5aab9ace208489b4f1eb4fe144566",
+      "prediction_sha256": "f4de5b44342f47615d5b4540d54b46ecf0d46a03ecd205920127034f6a76446b",
+      "annotation_sha256": "9e965c832263e6b9b9dd299637833e5b93924ecf9a1780b16fbd7c53e4a63f5e",
+      "source": "archived native test-only EMA/deploy pred.json and eval.pth",
+      "config": "configs/experiments/seadronessee_odv2/drq_detr.yml"
+    },
+    {
+      "group": "validation",
+      "dataset": "VisDrone2019",
+      "model": "DEIM-S",
+      "split": "validation",
+      "percent": {
+        "ap": 22.06544854741383,
+        "ap50": 37.35099025303483,
+        "ap75": 22.139306441082677,
+        "aps": 15.117841249180545,
+        "apm": 30.65932425143406,
+        "apl": 34.9094925203223,
+        "ar100": 37.66766539905778
+      },
+      "checkpoint_sha256": "5bf70fc9bd39369ad109b5f9425a80f88cef0aef18dbe8362001d60b02712e17",
+      "prediction_sha256": "ba8d9b6be833aa2e9395986c1eb0dc0cc623a82b0274612510aad4ef9245e7a0",
+      "annotation_sha256": "88c33f14f17f3d8e7199882fe553825276508364f28a6d8e0d31ae31a437907b",
+      "source": "archived native test-only EMA/deploy pred.json and eval.pth",
+      "config": "configs/experiments/visdrone2019/baseline_deim_s.yml"
+    },
+    {
+      "group": "validation",
+      "dataset": "VisDrone2019",
+      "model": "DRQ-DETR",
+      "split": "validation",
+      "percent": {
+        "ap": 29.139564147977705,
+        "ap50": 46.845555208717485,
+        "ap75": 30.491437652821386,
+        "aps": 21.324458325700903,
+        "apm": 39.143311693886076,
+        "apl": 43.29362442074954,
+        "ar100": 44.71337711442176
+      },
+      "checkpoint_sha256": "128fc4861f5c790ebd420fe4987c4f98b534fe16f17d132daeb181fcf3c11217",
+      "prediction_sha256": "c1605265bfc6fc9106fc2f12a636abe4adc0a1c99d30b03e7c6f09a1bc9d5171",
+      "annotation_sha256": "88c33f14f17f3d8e7199882fe553825276508364f28a6d8e0d31ae31a437907b",
+      "source": "archived native test-only EMA/deploy pred.json and eval.pth",
+      "config": "configs/experiments/visdrone2019/drq_detr.yml"
+    },
+    {
+      "group": "final_comparison",
+      "dataset": "SARD",
+      "model": "DEIM-S",
+      "split": "test",
+      "percent": {
+        "ap": 57.11376061192992,
+        "ap50": 88.44809608914542,
+        "ap75": 64.81435713628218,
+        "aps": 32.145126919642124,
+        "apm": 59.1151671268031,
+        "apl": 72.80175061825383,
+        "ar100": 72.3360655737705
+      },
+      "checkpoint_sha256": "0e4e309e6080a08bbcc99aee9c1f4d24c870d51ac459709b03a95ba4608e2f8f",
+      "prediction_sha256": "f48912dcbfefe859905b27c0170b9fab828feedf32b7e29a139527e91c713c4a",
+      "annotation_sha256": "f9f24dbd100618b69b992aebd9e55e1aaedd9bf93feb4ed1d0f013c5ce45b447",
+      "source": "archived native test-only EMA/deploy pred.json and eval.pth",
+      "config": "configs/experiments/sard/baseline_deim_s.yml"
+    },
+    {
+      "group": "final_comparison",
+      "dataset": "SARD",
+      "model": "DRQ-DETR",
+      "split": "test",
+      "percent": {
+        "ap": 61.26996415402579,
+        "ap50": 91.46134519575808,
+        "ap75": 71.26615047059289,
+        "aps": 35.80192198743809,
+        "apm": 63.85065873154496,
+        "apl": 75.06526285352008,
+        "ar100": 73.72950819672131
+      },
+      "checkpoint_sha256": "12a9737e0af2a747fe62b63777c9f0d9203cf0e7fd5b55cd335f7c2e460745cc",
+      "prediction_sha256": "6f2ab0652d5a7fa2cabddb9b5d2863112d868f53b37119c304b293730604c975",
+      "annotation_sha256": "f9f24dbd100618b69b992aebd9e55e1aaedd9bf93feb4ed1d0f013c5ce45b447",
+      "source": "archived native test-only EMA/deploy pred.json and eval.pth",
+      "config": "configs/experiments/sard/drq_detr.yml"
+    },
+    {
+      "group": "final_comparison",
+      "dataset": "SeaDronesSee-ODv2",
+      "model": "DEIM-S",
+      "split": "validation",
+      "percent": {
+        "ap": 48.835486697479794,
+        "ap50": 82.3001415731058,
+        "ap75": 49.237730325357035,
+        "aps": 46.9680508047494,
+        "apm": 50.03916346563501,
+        "apl": 64.66377432135761,
+        "ar100": 63.527336924194955
+      },
+      "checkpoint_sha256": "385ebacc317e11d87a195718b1da5d9e29f589a4b1dd206d696c8f862fb32945",
+      "prediction_sha256": "fb1b2ced3e978b13e1c908f79fdcd5b2efc6f79b2c83c555828c79c33a342ef9",
+      "annotation_sha256": "9e965c832263e6b9b9dd299637833e5b93924ecf9a1780b16fbd7c53e4a63f5e",
+      "source": "archived native test-only EMA/deploy pred.json and eval.pth",
+      "config": "configs/experiments/seadronessee_odv2/baseline_deim_s.yml"
+    },
+    {
+      "group": "final_comparison",
+      "dataset": "SeaDronesSee-ODv2",
+      "model": "DRQ-DETR",
+      "split": "validation",
+      "percent": {
+        "ap": 52.6523713298391,
+        "ap50": 84.62572460167826,
+        "ap75": 53.96140939919817,
+        "aps": 48.41692561046625,
+        "apm": 51.25222228082058,
+        "apl": 68.27217030775543,
+        "ar100": 66.84333664589462
+      },
+      "checkpoint_sha256": "f8379b1fc7e3f16b4abb14163e66315d1be5aab9ace208489b4f1eb4fe144566",
+      "prediction_sha256": "f4de5b44342f47615d5b4540d54b46ecf0d46a03ecd205920127034f6a76446b",
+      "annotation_sha256": "9e965c832263e6b9b9dd299637833e5b93924ecf9a1780b16fbd7c53e4a63f5e",
+      "source": "archived native test-only EMA/deploy pred.json and eval.pth",
+      "config": "configs/experiments/seadronessee_odv2/drq_detr.yml"
+    },
+    {
+      "group": "final_comparison",
+      "dataset": "VisDrone2019",
+      "model": "DEIM-S",
+      "split": "test-dev",
+      "percent": {
+        "ap": 17.645367877723046,
+        "ap50": 30.550880934592232,
+        "ap75": 17.96314316819883,
+        "aps": 9.947630067159901,
+        "apm": 25.420572086003247,
+        "apl": 32.6955405842521,
+        "ar100": 33.92049141354333
+      },
+      "checkpoint_sha256": "5bf70fc9bd39369ad109b5f9425a80f88cef0aef18dbe8362001d60b02712e17",
+      "prediction_sha256": "678c30b2815d40cd471672d73b020962b2629e243ff9975b3f7ea425f625a562",
+      "annotation_sha256": "448c0a728e21499a4a270a579106037f87531e5e0aaa4ec812f8bd2ecf0e656a",
+      "source": "archived native test-only EMA/deploy pred.json and eval.pth",
+      "config": "configs/experiments/visdrone2019/baseline_deim_s.yml"
+    },
+    {
+      "group": "final_comparison",
+      "dataset": "VisDrone2019",
+      "model": "DRQ-DETR",
+      "split": "test-dev",
+      "percent": {
+        "ap": 22.706702191682123,
+        "ap50": 38.479656674272704,
+        "ap75": 23.193944579655938,
+        "aps": 14.09289565285055,
+        "apm": 31.825297791466344,
+        "apl": 41.30390214785443,
+        "ar100": 39.181017441236435
+      },
+      "checkpoint_sha256": "128fc4861f5c790ebd420fe4987c4f98b534fe16f17d132daeb181fcf3c11217",
+      "prediction_sha256": "4611de5886df52f53852e72b6cceb2a4b9ff48659f4509838acca921b4d1c6aa",
+      "annotation_sha256": "448c0a728e21499a4a270a579106037f87531e5e0aaa4ec812f8bd2ecf0e656a",
+      "source": "archived native test-only EMA/deploy pred.json and eval.pth",
+      "config": "configs/experiments/visdrone2019/drq_detr.yml"
+    }
+  ],
+  "historical_ablation_status": "training-validation logs; not newly reevaluated",
+  "checkpoint_international_mirror_status": "not yet provided"
+}

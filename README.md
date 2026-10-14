@@ -9,8 +9,8 @@ information from detail construction and semantic constraint to query
 allocation and decoder access.
 
 Under the unified controlled evaluation protocol, DRQ-DETR achieves AP50/AP
-values of **92.41/62.22** on SARD, **84.62/52.65** on
-SeaDronesSee-ODv2, and **46.83/29.14** on VisDrone2019. Paper-specific final
+values of **92.34/62.21** on SARD, **84.63/52.65** on
+SeaDronesSee-ODv2, and **46.85/29.14** on VisDrone2019. Paper-specific final
 evaluation results on SARD test, SeaDronesSee-ODv2 validation, and
 VisDrone2019 test-dev are reported separately below.
 
@@ -40,24 +40,24 @@ source tree does not contain datasets or trained checkpoint files.
 
 ## Validation Results — AP50 & AP
 
-These results are obtained under the unified controlled evaluation protocol and
+These results are obtained from the archived native test-only EMA/deploy predictions and
 are presented using both AP50 and COCO AP for convenient comparison with UAV
 small-object detection literature.
 
 | Dataset | Method | AP50 | AP |
 |---|---|---:|---:|
-| SARD | DEIM | 89.92 | 58.45 |
-| SARD | DRQ-DETR | **92.41** | **62.22** |
-| SeaDronesSee-ODv2 | DEIM | 82.31 | 48.84 |
-| SeaDronesSee-ODv2 | DRQ-DETR | **84.62** | **52.65** |
+| SARD | DEIM | 89.94 | 58.44 |
+| SARD | DRQ-DETR | **92.34** | **62.21** |
+| SeaDronesSee-ODv2 | DEIM | 82.30 | 48.84 |
+| SeaDronesSee-ODv2 | DRQ-DETR | **84.63** | **52.65** |
 | VisDrone2019 | DEIM | 37.35 | 22.07 |
-| VisDrone2019 | DRQ-DETR | **46.83** | **29.14** |
+| VisDrone2019 | DRQ-DETR | **46.85** | **29.14** |
 
 | Dataset | Delta AP50 vs. DEIM | Delta AP vs. DEIM |
 |---|---:|---:|
-| SARD | +2.49 | +3.77 |
-| SeaDronesSee-ODv2 | +2.31 | +3.81 |
-| VisDrone2019 | +9.48 | +7.07 |
+| SARD | +2.40 | +3.77 |
+| SeaDronesSee-ODv2 | +2.33 | +3.81 |
+| VisDrone2019 | +9.50 | +7.07 |
 
 ## Final Paper Evaluation Results
 
@@ -68,37 +68,37 @@ uses the final dataset-specific evaluation split reported in the manuscript.
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | SARD | test | YOLO11s | 61.33 | 92.88 | 69.47 | 32.08 | 64.20 | 74.80 | 67.83 |
 | SARD | test | RT-DETR | 60.12 | 92.17 | 67.24 | 32.97 | 61.89 | 76.84 | 70.49 |
-| SARD | test | DEIM | 57.22 | 88.75 | 64.97 | 31.84 | 59.27 | 72.88 | 72.66 |
-| SARD | test | DRQ-DETR | **61.53** | 91.44 | **71.38** | **36.12** | 64.12 | 75.13 | **73.98** |
+| SARD | test | DEIM | 57.11 | 88.45 | 64.81 | 32.15 | 59.12 | 72.80 | 72.34 |
+| SARD | test | DRQ-DETR | 61.27 | 91.46 | **71.27** | **35.80** | 63.85 | 75.07 | **73.73** |
 | SeaDronesSee-ODv2 | validation | YOLO11s | 40.29 | 68.73 | 40.18 | 27.78 | 44.77 | 61.58 | 46.12 |
 | SeaDronesSee-ODv2 | validation | RT-DETR | 42.72 | 79.58 | 39.29 | 36.12 | 45.47 | 58.27 | 54.78 |
-| SeaDronesSee-ODv2 | validation | DEIM | 48.86 | 82.41 | 49.36 | 45.84 | 50.00 | 64.63 | 63.58 |
-| SeaDronesSee-ODv2 | validation | DRQ-DETR | **52.71** | **84.58** | **53.84** | **48.59** | **51.30** | **68.26** | **66.85** |
+| SeaDronesSee-ODv2 | validation | DEIM | 48.84 | 82.30 | 49.24 | 46.97 | 50.04 | 64.66 | 63.53 |
+| SeaDronesSee-ODv2 | validation | DRQ-DETR | **52.65** | **84.63** | **53.96** | **48.42** | **51.25** | **68.27** | **66.84** |
 | VisDrone2019 | test-dev | YOLO11s | 15.11 | 26.50 | 15.22 | 6.70 | 23.84 | 33.29 | 24.06 |
 | VisDrone2019 | test-dev | RT-DETR | 15.74 | 28.36 | 15.40 | 8.33 | 23.23 | 35.67 | 31.16 |
-| VisDrone2019 | test-dev | DEIM | 17.64 | 30.54 | 17.95 | 9.94 | 25.38 | 32.93 | 33.92 |
-| VisDrone2019 | test-dev | DRQ-DETR | **22.65** | **38.37** | **23.14** | **14.06** | **31.77** | **40.98** | **39.19** |
+| VisDrone2019 | test-dev | DEIM | 17.65 | 30.55 | 17.96 | 9.95 | 25.42 | 32.70 | 33.92 |
+| VisDrone2019 | test-dev | DRQ-DETR | **22.71** | **38.48** | **23.19** | **14.09** | **31.83** | **41.30** | **39.18** |
 
-Final paper AP values are **61.53** on SARD test, **52.71** on
-SeaDronesSee-ODv2 validation, and **22.65** on VisDrone2019 test-dev. Compared
-with DEIM, the corresponding AP gains are **+4.31**, **+3.85**, and
-**+5.01** percentage points.
+Final paper AP values are **61.27** on SARD test, **52.65** on
+SeaDronesSee-ODv2 validation, and **22.71** on VisDrone2019 test-dev. Compared
+with DEIM, the corresponding AP gains are **+4.16**, **+3.81**, and
+**+5.06** percentage points.
 
 ## Result Protocol Note
 
-The repository reports two complementary result groups. The Validation Results
-section uses the unified controlled protocol used for ablation and
-configuration studies, while the Final Paper Evaluation Results section follows
-the final dataset-specific evaluation splits reported in the paper. These
-values should not be mixed across protocols.
+The validation and final-comparison groups differ in split, not in the identity
+of the official Q64 checkpoint. SeaDronesSee-ODv2 uses the same validation
+prediction file in both groups and therefore has one official AP, 52.65.
+SARD test and VisDrone2019 test-dev are not relabeled as validation.
 
-In particular, VisDrone2019 has a controlled validation result of AP50/AP =
-46.83/29.14 and a final paper test-dev result of AP50/AP = 38.37/22.65.
-SeaDronesSee-ODv2 controlled values, AP50/AP = 84.62/52.65, and final-paper
-validation values, AP50/AP = 84.58/52.71, are both retained because they
-correspond to different experimental runs or protocols. SARD controlled values,
-AP50/AP = 92.41/62.22, and final-paper test values, AP50/AP = 91.44/61.53, are
-also reported separately.
+The official native evaluation entry is `scripts/paper_evaluate.py`. Exact
+metrics, checkpoint/annotation/prediction hashes and scope notes are available
+in [the freeze protocol](docs/PAPER_EVALUATION_FREEZE.md) and
+[the machine-readable result ledger](docs/paper_evidence/official_results.json).
+Historical eager-export and training-validation metrics may differ slightly;
+they are not alternative official results. Table 4 is a Q96 staged system
+ablation, whereas the official model and historical Thin-P2-32 width run use
+Q64. Historical non-final rows have not all been rerun through the new adapter.
 
 ## Architecture
 

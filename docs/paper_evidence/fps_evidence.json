@@ -1,0 +1,39 @@
+{
+  "source_sha256": "880d1c8ed291cc226f0cb70174a892c298de580d4d185571403daadb9c756614",
+  "historical_script_sha256": "e958fd22084d2a28cc7c0ea2a0027eb89ca6b91910b253dfee4f8fc8afe00d8b",
+  "timer": "s.record(); model(x); e.record(); torch.cuda.synchronize()",
+  "graph": "unfused eval",
+  "precision": "FP32",
+  "batch": 1,
+  "input": [
+    640,
+    640
+  ],
+  "warmup": 30,
+  "iterations": 100,
+  "rows": [
+    {
+      "dataset": "VisDrone",
+      "dirname": "10_DEIM-S_baseline",
+      "fps_total": "57.81",
+      "latency_total_ms": "17.3",
+      "params_m": "10.23",
+      "checkpoint": "best.pth",
+      "status": "ok",
+      "error": ""
+    },
+    {
+      "dataset": "VisDrone",
+      "dirname": "w64_noDGA_sdq_pre_topk=1024, sdq_query_topk=64",
+      "fps_total": "28.1",
+      "latency_total_ms": "35.58",
+      "params_m": "12.01",
+      "checkpoint": "best_stg2.pth",
+      "status": "ok",
+      "error": ""
+    }
+  ],
+  "per_iteration_raw_samples": "not retained in original evidence",
+  "software_driver_metadata_for_old_run": "not fully retained; current driver is not evidence for historical run",
+  "onboard_realtime_validation": false
+}
